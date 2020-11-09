@@ -19,7 +19,6 @@ metadata:
   namespace: $TARGET_NAMESPACE
 spec:
   version: 9.2.0.0-r1
-  debug: true
   license:
     accept: true
     license: L-RJON-BN7PN3
