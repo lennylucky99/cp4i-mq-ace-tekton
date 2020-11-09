@@ -73,10 +73,15 @@ oc create clusterrolebinding mqpipelineqmviewbinding --clusterrole=queuemanagers
 
 oc create clusterrolebinding mqpipelineviewerbinding --clusterrole=view --serviceaccount=$PIPELINE_NS:$PIPELINE_SA
 
-# Allow the serviceaccount to get secrets from any namespae
+# Allow the serviceaccount to get secrets from the mq namespace
 
 oc create clusterrole secretreader --verb=get --resource=secrets 
 oc -n $MQ_NS create rolebinding secretreaderbinding --clusterrole=secretreader --serviceaccount=$PIPELINE_NS:$PIPELINE_SA
+
+# Allow the serviceaccount to create routes in the mq namespace
+
+oc create clusterrole routecreator --verb=get --verb=list --verb=watch --verb=create --verb=update --verb=patch --verb=delete --resource=routes,routes/custom-host
+oc -n $MQ_NS create rolebinding routecreatorbinding --clusterrole=routecreator --serviceaccount=$PIPELINE_NS:$PIPELINE_SA
 
 # Add the serviceaccount to privileged SecurityContextConstraint
 oc adm policy add-scc-to-user privileged system:serviceaccount:$PIPELINE_NS:$PIPELINE_SA
