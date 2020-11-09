@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: mq-git-repo
+spec:
+  params:
+    - name: url
+      value: 'https://github.com/danielorlan/cp4i-mq-ace-tekton'
+    - name: revision
+      value: "master"
+  type: git
