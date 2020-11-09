@@ -31,7 +31,7 @@ spec:
         - name: QM_POD_NAME
           value: $(params.QM_POD_NAME) 
         - name: TARGET_NAMESPACE
-          value: $(params.TARGET_NAMESPACE)]
+          value: $(params.TARGET_NAMESPACE)
         - name: MQ_CERT_SECRET
           value: $(params.MQ_CERT_SECRET)
         - name: MQ_PVC_SC

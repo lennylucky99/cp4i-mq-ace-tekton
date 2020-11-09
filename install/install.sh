@@ -77,10 +77,10 @@ oc create clusterrolebinding mqpipelineviewerbinding --clusterrole=view --servic
 oc adm policy add-scc-to-user privileged system:serviceaccount:$PIPELINE_NS:$PIPELINE_SA
 
 # Add tekton resources
-# oc apply -f ./tekton/pipelines/
-# oc apply -f ./tekton/resources/
-# oc apply -f ./tekton/tasks/
-# oc apply -f ./tekton/triggers/
+oc apply -f ./tekton/pipelines/
+oc apply -f ./tekton/resources/
+oc apply -f ./tekton/tasks/
+oc apply -f ./tekton/triggers/
 
 # Create route for webhook
 cat << EOF | kubectl apply -f -
