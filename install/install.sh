@@ -2,7 +2,8 @@
 
 PIPELINE_NS=mq-pipeline
 PIPELINE_SA=mqpipeline
-MQ_NS=cp4i
+
+MQ_NS=<insert the MQ namespace here>
 
 GIT_SECRET_NAME=user-at-github
 
@@ -18,11 +19,11 @@ kubectl create ns $PIPELINE_NS
 # Change to the new namespace
 oc project $PIPELINE_NS
 
-# install tekton pipelines
-# kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
+# install tekton pipelines v0.14.3
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.14.3/release.yaml
 
-# # install tekton triggers
-# kubectl apply --filename https://storage.googleapis.com/tekton-releases/triggers/latest/release.yaml
+# install tekton triggers v0.7.0
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/triggers/previous/v0.7.0/release.yaml
 
 # create the git secret
 oc secret new-basicauth $GIT_SECRET_NAME --username=$GIT_USERNAME --password $GIT_TOKEN
