@@ -16,15 +16,16 @@
 - Follow [GitHub’s](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo_) documentation on how to fork a repo to create your own fork of this repo.
 ## Step 2: Clone the forked repository onto your machine
 ## Step 3: Modify and run the install script 
-1. Open the file `./install/install.sh` and insert your Git token and git usernname
+1. Open the file `./install/install.sh` and insert the namespace where MQ is installed (cp4i, or MQ..) also your Git token and git usernname
 
-
+    - `MQ_NS`= 
     - `GIT_TOKEN`=paste git token here and remove brackets
     - `GIT_USERNAME`=paste github username here and remove brackets
-2. Update the `PipelineResouce` to point to the url of your forked repository
+2. Update the Pipeline `mq-pipeline` (`/tekton/pipelines/mq-pipeline.yaml`) and change the `TARGET_NAMESPACE` to be the namespace where MQ is installed (cp4i, mq..)
+3. Update the `PipelineResouce` to point to the url of your forked repository
     - update line 8 of this file `./tekton/resources/mq-git-repo-resource.yaml` and change the `value`
-3. Make the install script executable `chmod +x ./install/install.sh`
-4. Run the install script `./install/install.sh`
+4. Make the install script executable `chmod +x ./install/install.sh`
+5. Run the install script `./install/install.sh`
 
 ## Step 4: Add the route to Github WebHook
 
