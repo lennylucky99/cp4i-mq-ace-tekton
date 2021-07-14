@@ -1,17 +1,19 @@
 #! /bin/bash
 
-PIPELINE_NS=mq-pipeline
-PIPELINE_SA=mqpipeline
+PIPELINE_NS=mq00-pipeline
+PIPELINE_SA=mq00pipeline
 
-MQ_NS=<insert the MQ namespace here>
+MQ_NS=cp4i-mq
+PN_NS=cp4i
+QMpre=mq00
 
 GIT_SECRET_NAME=user-at-github
 
 # Insert your Git Access Token below
-GIT_TOKEN=<paste git token here and remove brackets>
+GIT_TOKEN=e00c60cf2235fe73d3b2e6a6b321f4a765e24c6f
 
 # Insert your Git UserName here
-GIT_USERNAME=<paste github username here and remove brackets>
+GIT_USERNAME=jackcarnes
 
 # Create the pipeline namespace
 kubectl create ns $PIPELINE_NS
@@ -46,7 +48,7 @@ cat << EOF | kubectl apply -f -
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: tekton-pipelines-admin
+  name: $QMpre-tekton-pipelines-admin
 rules:
 # Permissions for every EventListener deployment to function
 - apiGroups: ["triggers.tekton.dev"]
@@ -83,6 +85,7 @@ oc -n $MQ_NS create rolebinding secretreaderbinding --clusterrole=secretreader -
 
 oc create clusterrole routecreator --verb=get --verb=list --verb=watch --verb=create --verb=update --verb=patch --verb=delete --resource=routes,routes/custom-host
 oc -n $MQ_NS create rolebinding routecreatorbinding --clusterrole=routecreator --serviceaccount=$PIPELINE_NS:$PIPELINE_SA
+oc -n $PN_NS create rolebinding routecreatorbinding --clusterrole=routecreator --serviceaccount=$PIPELINE_NS:$PIPELINE_SA
 
 # Add the serviceaccount to privileged SecurityContextConstraint
 oc adm policy add-scc-to-user privileged system:serviceaccount:$PIPELINE_NS:$PIPELINE_SA
@@ -103,7 +106,7 @@ metadata:
     app.kubernetes.io/managed-by: EventListener
     app.kubernetes.io/part-of: Triggers
     eventlistener: el-cicd-mq
-  name: el-el-cicd-mq-hook-route
+  name: $QMpre-el-el-cicd-mq-hook-route
 spec:
   port:
     targetPort: http-listener
