@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
-  name: deploy-qm
+  name: mq00-deploy-qm
 spec:
   params:
     - name: QM_NAME
