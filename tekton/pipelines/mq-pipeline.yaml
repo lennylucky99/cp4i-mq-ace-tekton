@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: Pipeline
 metadata:
-  name: mq-pipeline
+  name: mq00-pipeline
 spec:
   params:
     - name: MQ_WORKSPACE_DIR
@@ -9,10 +9,10 @@ spec:
       default: mq/basic/
     - name: QM_NAME
       type: string
-      default: basic
+      default: $QMprepl
     - name: QM_POD_NAME
       type: string
-      default: basic
+      default: $QMprepl
     - name: TARGET_NAMESPACE
       type: string
       default: cp4i
