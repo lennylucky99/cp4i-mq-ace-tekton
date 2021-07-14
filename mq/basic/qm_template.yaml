@@ -22,7 +22,7 @@ spec:
   license:
     accept: true
     license: L-RJON-BN7PN3
-    use: Production
+    use: NonProduction
   pki:
     keys:
       - name: default
