@@ -10,10 +10,10 @@ QMpre=mq00
 GIT_SECRET_NAME=user-at-github
 
 # Insert your Git Access Token below
-GIT_TOKEN=e00c60cf2235fe73d3b2e6a6b321f4a765e24c6f
+GIT_TOKEN=<paste git token here and remove brackets>
 
 # Insert your Git UserName here
-GIT_USERNAME=jackcarnes
+GIT_USERNAME=<paste github username here and remove brackets>
 
 # Create the pipeline namespace
 kubectl create ns $PIPELINE_NS
