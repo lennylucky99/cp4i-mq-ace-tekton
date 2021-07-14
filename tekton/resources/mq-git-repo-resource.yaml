@@ -5,7 +5,7 @@ metadata:
 spec:
   params:
     - name: url
-      value: 'https://github.com/ibm-cloudintegration/cp4i-mq-ace-tekton'
+      value: 'https://github.com/<your github repo>/cp4i-mq-ace-tekton'
     - name: revision
       value: "master"
   type: git
