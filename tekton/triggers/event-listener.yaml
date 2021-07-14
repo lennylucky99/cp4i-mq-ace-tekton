@@ -1,9 +1,9 @@
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: EventListener
 metadata:
-  name: el-cicd-mq
+  name: mq00-el-cicd-mq
 spec:
-  serviceAccountName: mqpipeline
+  serviceAccountName: $QMpremqpipeline
   triggers:
     - name: cicd-trigger
       template:
