@@ -1,7 +1,7 @@
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerTemplate
 metadata:
-  name: mq-trigger-template
+  name: mq00-mq-trigger-template
 spec:
   params:
     - name: mq_pvc_sc
@@ -10,11 +10,11 @@ spec:
     - apiVersion: tekton.dev/v1alpha1
       kind: PipelineRun
       metadata:
-        generateName: mq-cp4i-pipelinerun-
+        generateName: mq00-pre-mq-cp4i-pipelinerun-
       spec:
-        serviceAccountName: mqpipeline
+        serviceAccountName: $QMprepipeline
         pipelineRef:
-          name: mq-pipeline
+          name: mq00-pipeline
         params:
           - name: MQ_PVC_SC
             value: $(params.mq_pvc_sc)
