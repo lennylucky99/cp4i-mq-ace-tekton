@@ -28,7 +28,8 @@ kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline
 kubectl apply --filename https://storage.googleapis.com/tekton-releases/triggers/previous/v0.7.0/release.yaml
 
 # create the git secret
-oc secret new-basicauth $GIT_SECRET_NAME --username=$GIT_USERNAME --password $GIT_TOKEN
+#oc secret new-basicauth $GIT_SECRET_NAME --username=$GIT_USERNAME --password $GIT_TOKEN
+oc create secret generic $GIT_SECRET_NAME --from-literal=username=$GIT_USERNAME --from-literal=password=$GIT_TOKEN --type=kubernetes.io/basic-auth
 
 # annotate the secret
 kubectl annotate secret $GIT_SECRET_NAME tekton.dev/git-0=github.com
